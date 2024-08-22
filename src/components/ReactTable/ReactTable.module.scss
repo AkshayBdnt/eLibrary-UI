@@ -1,0 +1,146 @@
+.container {
+  width: 100%;
+  height: fit-content;
+  background-color: #f8f9faff;
+  margin-top: 10px;
+  padding: 15px;
+  border-radius: 10px;
+
+  .search {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    // button {
+    //   font-size: 12px;
+    //   background-color: #00bdd6;
+    //   border: none;
+    //   outline: none;
+    //   border-radius: 2px;
+    //   width: 66px;
+    //   height: 28px;
+    //   color: #fff;
+    //   font-size: 12px;
+    // }
+    // input {
+    //   border: 1px solid #bcc1ca;
+    //   border-radius: 2px;
+
+    //   height: 25px;
+    // }
+  }
+
+  .react_table {
+    margin-top: 20px;
+    height: fit-content;
+  }
+
+  .container_manage {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.primary_btn {
+  height: 32px;
+  background-color: #00bdd6;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  padding: 4px 12px;
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    color: black;
+    background-color: lightgray;
+  }
+}
+
+.tabs_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.tabs_menu_container {
+  margin-top: 30px;
+  justify-content: space-between;
+}
+.menu {
+  list-style-type: none;
+  display: flex;
+  width: fit-content;
+}
+.menu_item {
+  width: 140px;
+  text-align: center;
+  padding-bottom: 2px;
+}
+.active_menu {
+  width: 140px;
+  text-align: center;
+  padding-bottom: 2px;
+  border-bottom: 4px solid #00bdd6;
+  border-radius: 2px;
+}
+.tabs_filter_container {
+  display: flex;
+  gap: 20px;
+}
+.sort_container {
+  background-color: #eaecef;
+  border-radius: 8px;
+  padding: 8px 12px;
+  select {
+    border: none;
+    background-color: transparent;
+    &:focus {
+      border: none;
+      outline: none;
+    }
+    option {
+      font-size: 14px;
+      background-color: #f0f0f0;
+      color: #333;
+      padding: 8px !important;
+
+      &:hover {
+        background-color: #ddd;
+      }
+      &:active {
+        border: none;
+        outline: none;
+      }
+    }
+  }
+}
+.filter_container {
+  background-color: #eaecef;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px;
+  border-radius: 8px;
+}
+
+.table {
+  width: 100%;
+  border: 1px solid lightgrey;
+  background-color: transparent;
+  outline: 1px solid lightgrey;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+.tr {
+  background-color: #e6e5e5;
+  color: #000000;
+  height: 40px;
+}
+
+.td {
+  padding: 10px;
+  text-align: center;
+}

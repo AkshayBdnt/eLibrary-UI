@@ -1,0 +1,39 @@
+.main {
+  width: 100%;
+  padding: 0px 24px;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 18px;
+}
+
+.heading {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif !important;
+  font-size: 32px;
+  color: #4f4f4f;
+}
+
+.btn {
+  width: 180px;
+  height: 36px;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  background-color: aqua;
+  color: #ffffff;
+  padding: 5px 5px;
+  border-radius: 5px;
+}
+
+.cardContainer{
+  overflow-x: hidden;
+  display: flex;
+  justify-content: space-evenly;
+}

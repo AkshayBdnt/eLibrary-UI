@@ -1,0 +1,103 @@
+
+.container {
+    width: 80vw;
+    height: 90vh;
+    border-radius: 15px;
+    background: #fff;
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.15);
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .container > h2 {
+    color: #474444;
+    font-family: Jomhuria;
+    font-size: 80px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 1rem;
+  }
+
+  .container > span {
+    color: #a9bcff;
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 1rem;
+  }
+  
+  .signUp {
+    width: 217px;
+    height: 37px;
+    flex-shrink: 0;
+    color: #474444;
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    border-radius: 10px;
+    background: #fff;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    margin-top: -15rem;
+    margin-right: 1rem;
+  }
+  .selected {
+    box-shadow: 0px 0px 50px 0px rgba(0, 25, 255, 0.24);
+  }
+
+  .login_main {
+    margin-top: 4rem;
+    text-align: right;
+  }
+  
+  .label {
+    color: #474444;
+    /* font-family: Poppins; */
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    /* margin-top: 1rem;
+    margin-right: 2rem; */
+    margin: 24px 12px;
+    display: inline-block;
+    vertical-align: top;
+  }
+  
+  .input {
+    width: 388px;
+    height: 38px;
+    flex-shrink: 0;
+    border-radius: 10px 10px 0px 0px;
+    margin: 12px 12px;
+    display: inline-block;
+    vertical-align: top;
+    padding: 0px 10px;
+  }
+
+  .btnContainer{
+    text-align: center;
+    margin-top: 16px;
+  }
+  
+  .login_btn {
+    width: 274px;
+    height: 38px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background: #a9bcff;
+    color: #474444;
+    /* font-family: Poppins; */
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    border: none;
+  }
