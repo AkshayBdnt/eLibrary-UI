@@ -92,9 +92,9 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    // dispatch(logout());
-    // toast.success("Logout Successful");
-    // navigate("/login");
+    localStorage.removeItem("token");
+    toast.success("Logout Successful");
+    navigate("/");
   };
 
   const [anchorEl, setAnchorEl] = useState(null);

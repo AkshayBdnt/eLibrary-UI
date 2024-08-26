@@ -1,163 +1,102 @@
 .main {
-    margin-top: 2rem;
-    text-align: right;
-  }
-  
-  .label {
-    color: #474444;
-    /* font-family: Poppins; */
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    margin: 12px 0px;
-    display: inline-block;
-    vertical-align: top;
-  }
-  
-  .input {
-    width: 388px;
-    height: 38px;
-    flex-shrink: 0;
-    border-radius: 10px 10px 0px 0px;
-    margin: -8px 24px;
-    display: inline-block;
-    vertical-align: top;
-    padding: 0px 10px;
-  }
-  
-  .error {
-    color: #d60000;
-    /* font-family: Poppins; */
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-  }
-  
-  .btnContainer{
-      text-align: center;
-  }
-  
-  .signup_btn {
-    width: 274px;
-    height: 38px;
-    /* flex-shrink: 0; */
-    border-radius: 8px;
-    background: #a9bcff;
-    color: #474444;
-    /* font-family: Poppins; */
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    margin: 12px 0px;
-    border: none;
-    align-items: center;
-  }
-  
+  width: 100vw;
+  display: flex;
+  min-height: 100vh;
+}
 
+.leftContainer {
+  width: 50%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
-  
-.container {
-  width: 80vw;
-  height: 90vh;
-  border-radius: 15px;
-  background: #fff;
-  box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.15);
-  margin: 2rem auto;
+.imgContainer > img {
+  width: 100%;
+}
+
+.rightContainer {
+  width: 50%;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.container > h2 {
-  color: #474444;
-  font-family: Jomhuria;
-  font-size: 80px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  margin-top: 1rem;
-}
-
-.container > span {
-  color: #a9bcff;
-  font-size: 60px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  margin-top: 1rem;
-}
-
-.signUp {
-  width: 217px;
-  height: 37px;
-  flex-shrink: 0;
-  color: #474444;
-  font-family: Poppins;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  border-radius: 10px;
-  background: #fff;
-  border: none;
+.rightContainer > h1 {
   text-align: center;
-  cursor: pointer;
-  margin-top: -15rem;
-  margin-right: 1rem;
-}
-.selected {
-  box-shadow: 0px 0px 50px 0px rgba(0, 25, 255, 0.24);
+  color: #2471a3;
+  margin-top: 48px;
+  font-size: 48px;
+  font-weight: 900;
 }
 
-.login_main {
-  margin-top: 4rem;
-  text-align: right;
+.formContainer > h2 {
+  text-align: center;
+  margin-top: 24px;
+  color: #5dade2;
+  font-size: 36px;
+  font-weight: 900;
+}
+
+.formContainer {
+  width: fit-content;
+  min-height: 70%;
+  border: 1px solid #5dade2;
+  padding: 0px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 32px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .label {
   color: #474444;
-  /* font-family: Poppins; */
   font-size: 20px;
-  font-style: normal;
   font-weight: 600;
-  line-height: normal;
-  /* margin-top: 1rem;
-  margin-right: 2rem; */
-  margin: 24px 12px;
-  display: inline-block;
-  vertical-align: top;
 }
 
 .input {
-  width: 388px;
+  width: 240px;
   height: 38px;
-  flex-shrink: 0;
-  border-radius: 10px 10px 0px 0px;
-  margin: 12px 12px;
-  display: inline-block;
-  vertical-align: top;
-  padding: 0px 10px;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  padding: 4px;
 }
 
-.btnContainer{
+.select {
+  width: 240px;
+  height: 38px;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  padding: 4px;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.loginBtn {
+  width: 240px;
   text-align: center;
-  margin-top: 16px;
-}
-
-.login_btn {
-  width: 274px;
-  height: 38px;
-  flex-shrink: 0;
-  border-radius: 8px;
-  background: #a9bcff;
-  color: #474444;
-  /* font-family: Poppins; */
-  font-size: 20px;
-  font-style: normal;
+  padding: 8px 24px;
+  font-size: 16px;
   font-weight: 600;
-  line-height: normal;
   border: none;
+  background-color: #3498db;
+  color: #fff;
+  border-radius: 5px;
+  margin: auto;
 }

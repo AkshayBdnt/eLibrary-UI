@@ -1,79 +1,85 @@
 import React from "react";
+import Navbar from "../../components/Navbar/Navbar";
 import styles from "./LibrarianDashboard.module.scss";
-import Sidebar from "../../components/Sidebar/Sidebar";
+import ReactTable from "../../components/ReactTable/ReactTable";
+import { useNavigate } from "react-router-dom";
+import Card from "../../components/Card/Card";
 
 function LibrarianDashboard() {
+  const navigate = useNavigate();
+  const userColumns = [
+    {
+      Header: "User ID",
+      accessor: "id",
+    },
+    {
+      Header: "User Name",
+      accessor: "username",
+    },
+    {
+      Header: "Mail Address",
+      accessor: "email",
+    },
+    {
+      Header: "User Type",
+      accessor: "user_type",
+    },
+    {
+      Header: "Created Date",
+      accessor: "createDate",
+    },
+  ];
+
+  const data = [
+    {
+      id: "1",
+      username: "john_doe",
+      email: "john.doe@example.com",
+      user_type: "Librarian",
+      createDate: "2024-08-01",
+    },
+    {
+      id: "2",
+      username: "jane_smith",
+      email: "jane.smith@example.com",
+      user_type: "Librarian",
+      createDate: "2024-08-02",
+    },
+    {
+      id: "3",
+      username: "alice_johnson",
+      email: "alice.johnson@example.com",
+      user_type: "Librarian",
+      createDate: "2024-08-03",
+    },
+  ];
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate("/register");
+  };
+
   return (
-    <div className={styles.main}>
-      <div className={styles.left}>
-        <Sidebar />
-      </div>
+    <>
+      <Navbar />
 
-      <div className={styles.right}>
-        <div className={styles.inputContainer}>
+      <div className={styles.main}>
+        <div className={styles.header}>
+          <div className={styles.heading}>Admin Dashboard</div>
+
           <div>
-            <input type="search" placeholder="Search" />
+            <button className={styles.btn} onClick={handleSubmit}>
+              Create New Account
+            </button>
           </div>
         </div>
-        <div className={styles.revenueContainer}>
-          <div>
-            <h2>Revenue</h2>
-          </div>
-        </div>
-
         <div className={styles.cardContainer}>
-          <div className={styles.card}>
-            <h2>Borrowed</h2>
-          </div>
-          <div className={styles.card}>
-            <h2>Overdue</h2>
-          </div>
-          <div className={styles.card}>
-            <h2>Visitors</h2>
-          </div>
+          <Card />
+          <Card />
         </div>
-
-        <div>
-          <h2>Books Circulated</h2>
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th>Members</th>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Return Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>John Doe</td>
-                <td>12345</td>
-                <td>The Great Gatsby</td>
-                <td>2024-09-15</td>
-              </tr>
-              <tr>
-                <td>Jane Smith</td>
-                <td>67890</td>
-                <td>1984</td>
-                <td>2024-09-20</td>
-              </tr>
-              <tr>
-                <td>Michael Johnson</td>
-                <td>54321</td>
-                <td>To Kill a Mockingbird</td>
-                <td>2024-09-25</td>
-              </tr>
-              <tr>
-                <td>Emily Davis</td>
-                <td>98765</td>
-                <td>Pride and Prejudice</td>
-                <td>2024-09-30</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <ReactTable columns={userColumns} data={data} />
       </div>
-    </div>
+    </>
   );
 }
 

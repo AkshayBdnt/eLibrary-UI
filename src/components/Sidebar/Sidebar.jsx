@@ -1,41 +1,83 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./Sidebar.module.scss";
 import profile from "../../assets/download.png";
 import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import toast from "react-hot-toast"
 
 function Sidebar() {
+  const [activeTab, setActiveTab] = useState("dashboard");
+  const navigate = useNavigate();
+
+  const handleTabClick = (tab, path) => {
+    setActiveTab(tab);
+    navigate(path);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    toast.success("Logout Successful");
+    navigate("/");
+  };
+
   return (
-    <div className={styles.sidebar}>
-      <h2>Shelves</h2>
-      <ul>
-        <div>
-          <DashboardOutlinedIcon />
+    <div className={styles.sidebarContainer}>
+      <div className={styles.top}>
+        <h2>Shelves</h2>
+        <div className={styles.sidebar}>
+          <button
+            className={`${styles.sidebarItem} ${
+              activeTab === "dashboard" ? styles.active : ""
+            }`}
+            onClick={() => handleTabClick("dashboard", "/lib-dashboard")}
+          >
+            <div className={styles.icons}>
+              <DashboardOutlinedIcon />
+            </div>
+            <div>Dashboard</div>
+          </button>
+          <button
+            className={`${styles.sidebarItem} ${
+              activeTab === "listing" ? styles.active : ""
+            }`}
+            onClick={() => handleTabClick("listing", "/listing")}
+          >
+            <div className={styles.icons}>
+              <ListOutlinedIcon />
+            </div>
+            <div>Listings</div>
+          </button>
+          <button
+            className={`${styles.sidebarItem} ${
+              activeTab === "setting" ? styles.active : ""
+            }`}
+            onClick={() => handleTabClick("setting", "/setting")}
+          >
+            <div className={styles.icons}>
+              <SettingsOutlinedIcon />
+            </div>
+            <div>Settings</div>
+          </button>
         </div>
-        <div>Dashboard</div>
-      </ul>
-      <ul>
-        <div>
-          <ListOutlinedIcon />
-        </div>
-        <div>Listings</div>
-      </ul>
-      <ul>
-        <div>
-          <SettingsOutlinedIcon />
-        </div>
-        <div>Settings</div>
-      </ul>
+      </div>
+
       <div className={styles.bottom}>
         <div className={styles.profileContainer}>
-          <img src={profile} />
+          <img src={profile} alt="Profile" />
           <span>Akshay Wankhade</span>
         </div>
         <div className={styles.btnContainer}>
-          <button> Add Account</button>
+          <button onClick={() => (navigate("/register"))}>Add Account</button>
           <br />
-          <button> Log Out</button>
+          <button onClick={handleLogout}>
+            <div className={styles.icons}>
+              <LogoutOutlinedIcon />
+            </div>
+            <div>Log Out</div>
+          </button>
         </div>
       </div>
     </div>
