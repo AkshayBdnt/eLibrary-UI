@@ -4,9 +4,12 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Chart from "../../components/Chart/Chart";
 
 function AdminDashboard() {
+
+
+
   return (
     <div className={styles.main}>
-
+      <h2 className={styles.header}>Admin Dashboard</h2>
       <div className={styles.right}>
         <div className={styles.inputContainer}>
           <div>

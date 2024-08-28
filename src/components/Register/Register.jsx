@@ -22,10 +22,11 @@ const Register = () => {
 
   const handleRegister = async () => {
     try {
-      // Retrieve the token from localStorage
-      const token = localStorage.getItem("token");
-  
-      // Set up the Axios request headers to include the token
+      const userDetailsString = localStorage.getItem("userDetails");
+      
+      const userDetails = JSON.parse(userDetailsString);
+      const token = userDetails.token;
+      
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -34,7 +35,7 @@ const Register = () => {
   
       // Make the POST request with the token in headers and userInfo as data
       const response = await axios.post(
-        `https://e-library-api-x6jh.onrender.com/admin/register`,
+        `https://library-api-9bac.onrender.com/admin/register`,
         userInfo,  // Data payload
         config     // Configuration object with headers
       );
@@ -62,7 +63,7 @@ const Register = () => {
       </div>
       <div className={style.rightContainer}>
         <h1>Welcome to E-Library</h1>
-        <form className={style.formContainer}>
+        <form className={style.formContainer} onClick={handleRegister}>
           <h2>Register</h2>
           <div className={style.inputContainer}>
             <div>
@@ -76,6 +77,7 @@ const Register = () => {
                 value={userInfo.name}
                 onChange={handleChange}
                 placeholder="Name"
+                required
               />
             </div>
           </div>
@@ -91,6 +93,7 @@ const Register = () => {
                 value={userInfo.email}
                 onChange={handleChange}
                 placeholder="Email"
+                required
               />
             </div>
           </div>
@@ -106,6 +109,7 @@ const Register = () => {
                 value={userInfo.password}
                 onChange={handleChange}
                 placeholder="Password"
+                required
               />
             </div>
           </div>
@@ -119,6 +123,7 @@ const Register = () => {
                 name="userType"
                 value={userInfo.userType}
                 onChange={handleChange}
+                required
               >
                 <option value="" disabled>
                   User Type
@@ -130,8 +135,7 @@ const Register = () => {
           </div>
           <div className={style.btnContainer}>
             <button
-              type="button"
-              onClick={handleRegister}
+              type="submit"
               className={style.loginBtn}
             >
               Register

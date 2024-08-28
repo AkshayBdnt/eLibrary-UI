@@ -1,0 +1,104 @@
+.main {
+    width: 250px;
+    height: 450px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    padding: 16px 0px;
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    // align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.main:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.main h2 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.main p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+}
+
+.imageContainer{
+    // border: 1px solid;
+    width: 90%;
+    height: 250px;
+    border-radius: 5px;
+    margin: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.img{
+    width: 100%;
+    height: 100%;
+    // border: 1px solid;
+    border-radius: 5px;
+}
+
+.textContainer{
+    // border: 1px solid;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 12px;
+    font-family: Roboto, sans-serif;
+    --tw-text-opacity: 1;
+    color: rgb(38 50 56 / var(--tw-text-opacity));
+    font-weight: 600;
+    line-height: 1.625;
+    font-size: 16px;
+}
+
+.description{
+    // border: 1px solid;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: Roboto, sans-serif;
+    --tw-text-opacity: 1;
+    color: rgb(97 97 97 / var(--tw-text-opacity));
+}
+
+.btnContainer{
+    // border: 1px solid;
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+.btn{
+    border: none;
+    --tw-shadow-color: rgba(33, 33, 33, .1);
+    --tw-shadow: var(--tw-shadow-colored);
+    transition-property: all;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    transition-duration: .15s;
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    --tw-text-opacity: 1;
+    color: rgb(38 50 56 / var(--tw-text-opacity));
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1rem;
+    background-color: rgba(38, 50, 56, .1);
+    padding: 6px 48px;
+    border-radius: 5px;
+    
+}
+
+.btn:hover{
+    background-color: #000;
+    color: #fff;
+}
+

@@ -1,10 +1,12 @@
 .main {
 
-  margin-left: 24vw;
+  margin-left: 0;
+  overflow-x: hidden;
 }
 
-
-
+.header{
+  color: rgb(59, 56, 56);   
+}
 .right {
   min-height: 100vh;
   min-width: 76vw;
@@ -51,9 +53,11 @@
 }
 
 .cardContainer {
+  width: 98%;
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+  // border: 1px solid;
 }
 
 .card {

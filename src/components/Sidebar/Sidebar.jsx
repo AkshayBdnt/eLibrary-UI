@@ -12,6 +12,12 @@ function Sidebar() {
   const [activeTab, setActiveTab] = useState("dashboard");
   const navigate = useNavigate();
 
+  const userDetailsString = localStorage.getItem("userDetails");
+
+  const userDetails = JSON.parse(userDetailsString);
+  const name = userDetails.name;
+  const userType = userDetails.usertype;
+
   const handleTabClick = (tab, path) => {
     setActiveTab(tab);
     navigate(path);
@@ -32,7 +38,7 @@ function Sidebar() {
             className={`${styles.sidebarItem} ${
               activeTab === "dashboard" ? styles.active : ""
             }`}
-            onClick={() => handleTabClick("dashboard", "/lib-dashboard")}
+            onClick={() => handleTabClick("dashboard", "/admin-dashboard")}
           >
             <div className={styles.icons}>
               <DashboardOutlinedIcon />
@@ -67,7 +73,7 @@ function Sidebar() {
       <div className={styles.bottom}>
         <div className={styles.profileContainer}>
           <img src={profile} alt="Profile" />
-          <span>Akshay Wankhade</span>
+          <span>{name}</span>
         </div>
         <div className={styles.btnContainer}>
           <button onClick={() => (navigate("/register"))}>Add Account</button>
