@@ -150,7 +150,7 @@ function BookEntry() {
                 <input
                   type="file"
                   name="bookImage"
-                  onChange={handleChange} // No need to store the value attribute for file inputs
+                  onChange={handleChange}
                   className={styles.input}
                   required
                 />

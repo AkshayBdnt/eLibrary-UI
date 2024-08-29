@@ -11,6 +11,10 @@ const AuthGuard = ({ children }) => {
   const userDetails = JSON.parse(userDetailsString);
   const token = userDetails.token;
 
+  if (!token) {
+    return <Navigate to="/" replace />;
+  }
+
   console.log("Retrieved token:", token);
 
   if (!token) {

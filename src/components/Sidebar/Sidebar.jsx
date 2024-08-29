@@ -6,6 +6,7 @@ import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import PostAddOutlinedIcon from '@mui/icons-material/PostAddOutlined';
 import toast from "react-hot-toast";
 
 function Sidebar() {
@@ -91,6 +92,20 @@ function Sidebar() {
             </button>
           )}
 
+          {userType === "librarian" && (
+            <button
+              className={`${styles.sidebarItem} ${
+                activeTab === "bookForm" ? styles.active : ""
+              }`}
+              onClick={() => handleTabClick("bookForm", "/add-books")}
+            >
+              <div className={styles.icons}>
+                <PostAddOutlinedIcon />
+              </div>
+              <div>Add Books</div>
+            </button>
+          )}
+
           {/* Conditional rendering for Settings - available only to admin */}
           {userType === "administrator" && (
             <button
@@ -116,10 +131,10 @@ function Sidebar() {
         <div className={styles.btnContainer}>
           {/* Add Account only available for admin */}
           {/* {userType === "administrator" && ( */}
-            <>
-              <button onClick={() => navigate("/register")}>Add Account</button>
-              <br />
-            </>
+          <>
+            <button onClick={() => navigate("/register")}>Add Account</button>
+            <br />
+          </>
           {/* )} */}
           <button onClick={handleLogout}>
             <div className={styles.icons}>

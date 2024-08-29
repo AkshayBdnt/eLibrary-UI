@@ -27,14 +27,14 @@ function App() {
               </AuthGuard>
             }
           />
-          <Route
+          {/* <Route
             path="/add-books"
             element={
               <AuthGuard>
                 <BookEntry />
               </AuthGuard>
             }
-          />
+          /> */}
           <Route
             element={
               <AuthGuard>
@@ -46,6 +46,7 @@ function App() {
             <Route path="/lib-dashboard" element={<LibrarianDashboard />} />
             <Route path="/listing" element={<Listing />} />
             <Route path="/setting" element={<Setting />} />
+            <Route path="/add-books" element={<BookEntry />} />
           </Route>
         </Routes>
       </Router>

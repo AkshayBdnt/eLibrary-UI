@@ -11,14 +11,14 @@ export function EcommerceCard({ title, cost, image, description }) {
         <img src={image} alt={title} className={styles.img} />
       </div>
       <div className={styles.textContainer}>
-        <div>{title}</div>
-        <div>${cost}</div>
+        <div >{title}</div>
+        <div className={styles.text}>${cost}</div>
       </div>
       <div className={styles.description}>
       {description}
       </div>
       <div className={styles.btnContainer}>
-        <button className={styles.btn}>Add To Cart</button>
+        <button className={styles.btn}>Borrow Book</button>
       </div>
     </div>
   );

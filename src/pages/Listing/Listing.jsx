@@ -39,7 +39,7 @@ function Listing() {
             key={book._id}
             title={book.title}
             cost={book.cost}
-            image={`https://library-api-9bac.onrender.com${book.bookImage}`}
+            image={book.bookImage}
             description={book.description}
           />
         ))
