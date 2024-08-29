@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "../Sidebar/Sidebar";
-import styles from "./Layout.module.scss"; // Create a separate CSS/SCSS file for layout styling
+import styles from "./Layout.module.scss";
 
 function Layout() {
   return (

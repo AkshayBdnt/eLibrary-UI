@@ -3,8 +3,17 @@ import style from "./Register.module.scss";
 import elib from "../../assets/elib.jpg";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate();
+
+  const userDetailsString = localStorage.getItem("userDetails");
+
+  const userDetails = JSON.parse(userDetailsString);
+  const token = userDetails?.token;
+  const userType = userDetails?.usertype;
+
   const [userInfo, setUserInfo] = useState({
     name: "",
     email: "",
@@ -20,29 +29,40 @@ const Register = () => {
     }));
   };
 
-  const handleRegister = async () => {
+  const handleRegister = async (e) => {
+    e.preventDefault(); // Prevents the default form submission behavior
+
     try {
-      const userDetailsString = localStorage.getItem("userDetails");
-      
-      const userDetails = JSON.parse(userDetailsString);
-      const token = userDetails.token;
-      
+      if (!userDetailsString) {
+        toast.error("User not logged in or missing token.");
+        return;
+      }
+
+      if (!token) {
+        toast.error("Token is missing.");
+        return;
+      }
+
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       };
-  
-      // Make the POST request with the token in headers and userInfo as data
+
       const response = await axios.post(
         `https://library-api-9bac.onrender.com/admin/register`,
-        userInfo,  // Data payload
-        config     // Configuration object with headers
+        userInfo,
+        config
       );
-  
+
       if (response.status === 201) {
         console.log("User registered successfully");
         toast.success("Registered Successfully!");
+        if (userType === "librarian") {
+          navigate("/lib-dashboard");
+        } else {
+          navigate("/admin-dashboard");
+        }
       } else {
         console.log("Registration failed");
         toast.error("Registration Failed!");
@@ -52,7 +72,6 @@ const Register = () => {
       console.error(error);
     }
   };
-  
 
   return (
     <div className={style.main}>
@@ -63,7 +82,7 @@ const Register = () => {
       </div>
       <div className={style.rightContainer}>
         <h1>Welcome to E-Library</h1>
-        <form className={style.formContainer} onClick={handleRegister}>
+        <form className={style.formContainer} onSubmit={handleRegister}>
           <h2>Register</h2>
           <div className={style.inputContainer}>
             <div>
@@ -128,16 +147,16 @@ const Register = () => {
                 <option value="" disabled>
                   User Type
                 </option>
-                <option value="librarian">Librarian</option>
-                <option value="user">User</option>
+                {userType === "administrator" ? (
+                  <option value="librarian">Librarian</option>
+                ) : (
+                  <option value="user">User</option>
+                )}
               </select>
             </div>
           </div>
           <div className={style.btnContainer}>
-            <button
-              type="submit"
-              className={style.loginBtn}
-            >
+            <button type="submit" className={style.loginBtn}>
               Register
             </button>
           </div>

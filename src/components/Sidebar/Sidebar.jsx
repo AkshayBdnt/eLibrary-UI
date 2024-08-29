@@ -64,7 +64,7 @@ function Sidebar() {
           </button>
 
           {/* Conditional rendering for Listings - available to both admin and librarian */}
-          <button
+          {/* <button
             className={`${styles.sidebarItem} ${
               activeTab === "listing" ? styles.active : ""
             }`}
@@ -74,7 +74,22 @@ function Sidebar() {
               <ListOutlinedIcon />
             </div>
             <div>Listings</div>
-          </button>
+          </button> */}
+
+          {/* Conditional rendering for listings - available only to librarian */}
+          {userType === "librarian" && (
+            <button
+              className={`${styles.sidebarItem} ${
+                activeTab === "listing" ? styles.active : ""
+              }`}
+              onClick={() => handleTabClick("listing", "/listing")}
+            >
+              <div className={styles.icons}>
+                <SettingsOutlinedIcon />
+              </div>
+              <div>Listing</div>
+            </button>
+          )}
 
           {/* Conditional rendering for Settings - available only to admin */}
           {userType === "administrator" && (
@@ -100,12 +115,12 @@ function Sidebar() {
         </div>
         <div className={styles.btnContainer}>
           {/* Add Account only available for admin */}
-          {userType === "administrator" && (
+          {/* {userType === "administrator" && ( */}
             <>
               <button onClick={() => navigate("/register")}>Add Account</button>
               <br />
             </>
-          )}
+          {/* )} */}
           <button onClick={handleLogout}>
             <div className={styles.icons}>
               <LogoutOutlinedIcon />
