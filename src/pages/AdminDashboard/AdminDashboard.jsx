@@ -1,11 +1,57 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./AdminDashboard.module.scss";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Chart from "../../components/Chart/Chart";
+import axios from "axios";
 
 function AdminDashboard() {
+  const [data, setData] = useState([]);
+  const [count, setCount] = useState("");
+  
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const userDetailsString = localStorage.getItem("userDetails");
 
+        if (userDetailsString) {
+          const userDetails = JSON.parse(userDetailsString);
+          const token = userDetails.token;
+
+          const config = {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          };
+
+          const response = await axios.get(
+            `https://library-api-9bac.onrender.com/admin/librarians/`,
+            config
+          );
+
+          if (response.data) {
+            console.log(response.data, "response");
+            setData(response.data.librarians);
+            setCount(response.data.totalCount);
+            console.log(response.data.librarians, "data");
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const formatDate = (isoString) => {
+    const date = new Date(isoString);
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",  // Use 'short' or 'numeric' for different formats
+      day: "numeric",
+    });
+  };
 
   return (
     <div className={styles.main}>
@@ -30,6 +76,7 @@ function AdminDashboard() {
         <div className={styles.cardContainer}>
           <div className={styles.card}>
             <h2>No. Of Librarians</h2>
+            <h1>{count}</h1>
           </div>
           <div className={styles.card}>
             <h2>No. Of Users</h2>
@@ -40,43 +87,33 @@ function AdminDashboard() {
         </div>
 
         <div>
-          <h2>Books Circulated</h2>
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>ID</th>
-                <th>Email</th>
-                <th>Created Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>John Doe</td>
-                <td>12345</td>
-                <td>The Great Gatsby</td>
-                <td>2024-09-15</td>
-              </tr>
-              <tr>
-                <td>Jane Smith</td>
-                <td>67890</td>
-                <td>1984</td>
-                <td>2024-09-20</td>
-              </tr>
-              <tr>
-                <td>Michael Johnson</td>
-                <td>54321</td>
-                <td>To Kill a Mockingbird</td>
-                <td>2024-09-25</td>
-              </tr>
-              <tr>
-                <td>Emily Davis</td>
-                <td>98765</td>
-                <td>Pride and Prejudice</td>
-                <td>2024-09-30</td>
-              </tr>
-            </tbody>
-          </table>
+          <h2>Librarian Data</h2>
+          {data && data.length > 0 ? (
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>ID</th>
+                  <th>Email</th>
+                  <th>Created Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.map((details) => {
+                  return (
+                    <tr key={details.userId}>
+                      <td>{details.username}</td>
+                      <td>{details.userId}</td>
+                      <td>{details.email}</td>
+                      <td>{formatDate(details.createdDate)}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          ) : (
+            <p>No Data Available</p>
+          )}
         </div>
       </div>
     </div>
