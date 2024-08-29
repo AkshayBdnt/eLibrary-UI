@@ -29,13 +29,13 @@ function AdminDashboard() {
 
         <div className={styles.cardContainer}>
           <div className={styles.card}>
-            <h2>Borrowed</h2>
+            <h2>No. Of Librarians</h2>
           </div>
           <div className={styles.card}>
-            <h2>Overdue</h2>
+            <h2>No. Of Users</h2>
           </div>
           <div className={styles.card}>
-            <h2>Visitors</h2>
+            <h2>NO. Of Visitors</h2>
           </div>
         </div>
 
@@ -44,10 +44,10 @@ function AdminDashboard() {
           <table className={styles.table}>
             <thead>
               <tr>
-                <th>Members</th>
+                <th>Name</th>
                 <th>ID</th>
-                <th>Title</th>
-                <th>Return Date</th>
+                <th>Email</th>
+                <th>Created Date</th>
               </tr>
             </thead>
             <tbody>

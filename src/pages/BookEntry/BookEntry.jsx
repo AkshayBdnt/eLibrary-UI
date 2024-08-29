@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import styles from "./BookEntry.module.scss";
-import MenuBookTwoToneIcon from "@mui/icons-material/MenuBookTwoTone";
 import book from "../../assets/book.png";
 import axios from "axios";
-import { toast } from "react-hot-toast"; // Ensure you have this installed for notifications
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 function BookEntry() {
+  const navigate = useNavigate();
   const [bookInfo, setBookInfo] = useState({
     title: "",
     author: "",
@@ -13,21 +14,35 @@ function BookEntry() {
     cost: "",
     bookType: "",
     description: "",
-    bookImage: "",
+    bookImage: null, // Change to null for file handling
   });
 
+  // Handle input change
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setBookInfo((prevBookInfo) => ({
-      ...prevBookInfo,
-      [name]: value,
-    }));
+    const { name, value, files } = e.target;
+
+    // Handle file input separately
+    if (name === "bookImage" && files.length > 0) {
+      setBookInfo((prevBookInfo) => ({
+        ...prevBookInfo,
+        [name]: files[0], // Store the file object
+      }));
+    } else {
+      setBookInfo((prevBookInfo) => ({
+        ...prevBookInfo,
+        [name]: value,
+      }));
+    }
   };
 
+  // Handle form submission (Add Book)
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem("token");
+      const userDetailsString = localStorage.getItem("userDetails");
+
+      const userDetails = JSON.parse(userDetailsString);
+      const token = userDetails.token;
 
       const formData = new FormData();
       for (const key in bookInfo) {
@@ -37,7 +52,7 @@ function BookEntry() {
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
-          // "Content-Type": "multipart/form-data", 
+          "Content-Type": "multipart/form-data", // Ensure correct content type for file upload
         },
       };
 
@@ -46,16 +61,16 @@ function BookEntry() {
         formData,
         config
       );
+
       if (response.status === 201) {
-        console.log("Book Added successfully");
         toast.success("Book Added Successfully!");
+        navigate("/listing");
       } else {
-        console.log("Book Submission failed");
         toast.error("Book Submission Failed!");
       }
     } catch (error) {
       toast.error("Book Submission Failed!");
-      console.error(error);
+      console.error("Error:", error);
     }
   };
 
@@ -64,7 +79,6 @@ function BookEntry() {
       <div className={styles.formContainer}>
         <div className={styles.header}>
           <div className={styles.imgContainer}>
-            {/* <MenuBookTwoToneIcon fontSize="large" /> */}
             <img src={book} alt="Book" />
           </div>
           <div className={styles.headerText}>Book Entry</div>
@@ -83,6 +97,7 @@ function BookEntry() {
                   onChange={handleChange}
                   placeholder="Book Title"
                   className={styles.input}
+                  required
                 />
               </div>
             </div>
@@ -98,6 +113,7 @@ function BookEntry() {
                   onChange={handleChange}
                   placeholder="Author's Name"
                   className={styles.input}
+                  required
                 />
               </div>
             </div>
@@ -113,6 +129,7 @@ function BookEntry() {
                   value={bookInfo.bookType}
                   onChange={handleChange}
                   className={styles.input}
+                  required
                 >
                   <option value="" disabled>
                     Select Book Type
@@ -127,15 +144,15 @@ function BookEntry() {
             </div>
             <div>
               <div className={styles.label}>
-                <label>Book's Image URL</label>
+                <label>Book's Image</label>
               </div>
               <div>
                 <input
-                  type="text"
+                  type="file"
                   name="bookImage"
-                  value={bookInfo.bookImage}
-                  onChange={handleChange}
+                  onChange={handleChange} // No need to store the value attribute for file inputs
                   className={styles.input}
+                  required
                 />
               </div>
             </div>
@@ -153,6 +170,7 @@ function BookEntry() {
                   onChange={handleChange}
                   placeholder="Count"
                   className={styles.input}
+                  required
                 />
               </div>
             </div>
@@ -168,6 +186,7 @@ function BookEntry() {
                   onChange={handleChange}
                   placeholder="Cost"
                   className={styles.input}
+                  required
                 />
               </div>
             </div>
@@ -184,6 +203,7 @@ function BookEntry() {
                 className={styles.input}
                 rows={5}
                 cols={36}
+                required
               />
             </div>
           </div>
