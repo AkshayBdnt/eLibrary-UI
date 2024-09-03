@@ -11,6 +11,7 @@ import Layout from "./components/Layout/Layout";
 import Login from "./components/Login/Login";
 import AuthGuard from "./components/AuthGuard/AuthGuard";
 import BookEntry from "./pages/BookEntry/BookEntry";
+import UserDashboard from "./pages/UserDashboard/UserDashboard";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
           >
             <Route path="/admin-dashboard" element={<AdminDashboard />} />
             <Route path="/lib-dashboard" element={<LibrarianDashboard />} />
+            <Route path="/user-dashboard" element={<UserDashboard />} />
             <Route path="/listing" element={<Listing />} />
             <Route path="/setting" element={<Setting />} />
             <Route path="/add-books" element={<BookEntry />} />

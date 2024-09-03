@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react'
 import styles from "./Listing.module.scss";
 import { EcommerceCard } from '../../components/EcommerceCard/EcommerceCard';
 import axios from 'axios';
-// import Card from "../../components/Card/Card";
 
 function Listing() {
   const [books, setBooks] = useState([]);
@@ -37,6 +36,7 @@ function Listing() {
         books.map(book => (
           <EcommerceCard
             key={book._id}
+            id={book._id}
             title={book.title}
             cost={book.cost}
             image={book.bookImage}

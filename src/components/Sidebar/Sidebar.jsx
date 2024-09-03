@@ -6,7 +6,8 @@ import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
-import PostAddOutlinedIcon from '@mui/icons-material/PostAddOutlined';
+import PostAddOutlinedIcon from "@mui/icons-material/PostAddOutlined";
+import ViewListOutlinedIcon from "@mui/icons-material/ViewListOutlined";
 import toast from "react-hot-toast";
 
 function Sidebar() {
@@ -18,7 +19,6 @@ function Sidebar() {
   const name = userDetails?.name || "User";
   const userType = userDetails?.usertype || "guest";
 
-  // Set the default path based on userType only on component mount
   useEffect(() => {
     if (userType === "administrator") {
       setActiveTab("dashboard");
@@ -26,6 +26,9 @@ function Sidebar() {
     } else if (userType === "librarian") {
       setActiveTab("dashboard");
       navigate("/lib-dashboard", { replace: true });
+    } else if (userType === "user") {
+      setActiveTab("dashboard");
+      navigate("/user-dashboard", { replace: true });
     }
   }, [userType]);
 
@@ -49,14 +52,19 @@ function Sidebar() {
             className={`${styles.sidebarItem} ${
               activeTab === "dashboard" ? styles.active : ""
             }`}
-            onClick={() =>
-              handleTabClick(
-                "dashboard",
-                userType === "administrator"
-                  ? "/admin-dashboard"
-                  : "/lib-dashboard"
-              )
-            }
+            onClick={() => {
+              let dashboardRoute = "";
+
+              if (userType === "administrator") {
+                dashboardRoute = "/admin-dashboard";
+              } else if (userType === "librarian") {
+                dashboardRoute = "/lib-dashboard";
+              } else if (userType === "user") {
+                dashboardRoute = "/user-dashboard";
+              }
+
+              handleTabClick("dashboard", dashboardRoute);
+            }}
           >
             <div className={styles.icons}>
               <DashboardOutlinedIcon />
@@ -64,7 +72,6 @@ function Sidebar() {
             <div>Dashboard</div>
           </button>
 
-          {/* Conditional rendering for Listings - available to both admin and librarian */}
           {/* <button
             className={`${styles.sidebarItem} ${
               activeTab === "listing" ? styles.active : ""
@@ -77,20 +84,20 @@ function Sidebar() {
             <div>Listings</div>
           </button> */}
 
-          {/* Conditional rendering for listings - available only to librarian */}
-          {userType === "librarian" && (
-            <button
-              className={`${styles.sidebarItem} ${
-                activeTab === "listing" ? styles.active : ""
-              }`}
-              onClick={() => handleTabClick("listing", "/listing")}
-            >
-              <div className={styles.icons}>
-                <SettingsOutlinedIcon />
-              </div>
-              <div>Listing</div>
-            </button>
-          )}
+          {(userType === "librarian" ||
+            userType === "user") && (
+              <button
+                className={`${styles.sidebarItem} ${
+                  activeTab === "listing" ? styles.active : ""
+                }`}
+                onClick={() => handleTabClick("listing", "/listing")}
+              >
+                <div className={styles.icons}>
+                  <ViewListOutlinedIcon />
+                </div>
+                <div>Listing</div>
+              </button>
+            )}
 
           {userType === "librarian" && (
             <button
@@ -106,7 +113,6 @@ function Sidebar() {
             </button>
           )}
 
-          {/* Conditional rendering for Settings - available only to admin */}
           {userType === "administrator" && (
             <button
               className={`${styles.sidebarItem} ${
@@ -129,13 +135,12 @@ function Sidebar() {
           <span>{name}</span>
         </div>
         <div className={styles.btnContainer}>
-          {/* Add Account only available for admin */}
-          {/* {userType === "administrator" && ( */}
+          {userType === "administrator" || userType === "librarian" && (
           <>
             <button onClick={() => navigate("/register")}>Add Account</button>
             <br />
           </>
-          {/* )} */}
+          )}
           <button onClick={handleLogout}>
             <div className={styles.icons}>
               <LogoutOutlinedIcon />
