@@ -11,6 +11,7 @@ const Login = () => {
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
 
   // Handle input change
   const handleChange = (e) => {
@@ -24,6 +25,7 @@ const Login = () => {
   // Handle form submission (Login)
   const handleLogin = async (e) => {
     e.preventDefault(); // Prevent form default submission
+    setLoading(true);
     try {
       const response = await axios.post(
         `https://library-api-9bac.onrender.com/admin/login`,
@@ -43,6 +45,7 @@ const Login = () => {
         };
         localStorage.setItem("userDetails", JSON.stringify(userDetails));
 
+        setLoading(false);
         navigate("/admin-dashboard");
         toast.success("Login successful!");
       } else {
@@ -97,7 +100,7 @@ const Login = () => {
           </div>
           <div className={style.btnContainer}>
             <button type="submit" className={style.loginBtn}>
-              Login
+              {loading ? "loading..." : "Login"}
             </button>
           </div>
         </form>

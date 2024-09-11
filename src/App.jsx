@@ -12,6 +12,7 @@ import Login from "./components/Login/Login";
 import AuthGuard from "./components/AuthGuard/AuthGuard";
 import BookEntry from "./pages/BookEntry/BookEntry";
 import UserDashboard from "./pages/UserDashboard/UserDashboard";
+import MyAccount from "./pages/MyAccount/MyAccount";
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
             <Route path="/listing" element={<Listing />} />
             <Route path="/setting" element={<Setting />} />
             <Route path="/add-books" element={<BookEntry />} />
+            <Route path="/my-account" element={<MyAccount />} />
           </Route>
         </Routes>
       </Router>

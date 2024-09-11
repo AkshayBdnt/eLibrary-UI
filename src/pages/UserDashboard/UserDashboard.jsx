@@ -12,7 +12,6 @@ function UserDashboard() {
       if (userDetailsString) {
         const userDetails = JSON.parse(userDetailsString);
         const token = userDetails.token;
-
         const config = {
           headers: {
             Authorization: `Bearer ${token}`,

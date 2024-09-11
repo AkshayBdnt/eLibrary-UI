@@ -7,7 +7,7 @@ import axios from "axios";
 function AdminDashboard() {
   const [data, setData] = useState([]);
   const [count, setCount] = useState("");
-  
+  const [incomeData, setIncomeData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,10 +30,10 @@ function AdminDashboard() {
           );
 
           if (response.data) {
-            console.log(response.data, "response");
+            // console.log(response.data, "response");
             setData(response.data.librarians);
             setCount(response.data.totalCount);
-            console.log(response.data.librarians, "data");
+            // console.log(response.data.librarians, "data");
           }
         }
       } catch (error) {
@@ -44,11 +44,42 @@ function AdminDashboard() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const fetchIncomeData = async () => {
+      try {
+        const userDetailsString = localStorage.getItem("userDetails");
+
+        if (userDetailsString) {
+          const userDetails = JSON.parse(userDetailsString);
+          const token = userDetails.token;
+
+          const config = {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          };
+          const response = await axios.get(
+            `https://library-api-9bac.onrender.com/income/monthly/`,
+            config
+          );
+          if (response.data) {
+            console.log(response.data, "response");
+            console.log(response.data.monthlyIncome, "data");
+            setIncomeData(response.data.monthlyIncome);
+          }
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchIncomeData();
+  }, []);
+
   const formatDate = (isoString) => {
     const date = new Date(isoString);
     return date.toLocaleDateString("en-US", {
       year: "numeric",
-      month: "long",  // Use 'short' or 'numeric' for different formats
+      month: "long", // Use 'short' or 'numeric' for different formats
       day: "numeric",
     });
   };
@@ -65,7 +96,7 @@ function AdminDashboard() {
 
         <div className={styles.chart}>
           <h3>Books Revenue</h3>
-          <Chart />
+          <Chart data={incomeData} />
         </div>
         {/* <div className={styles.revenueContainer}>
           <div>

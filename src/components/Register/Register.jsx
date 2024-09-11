@@ -19,6 +19,7 @@ const Register = () => {
     email: "",
     password: "",
     userType: "",
+    membership: "",
   });
 
   const handleChange = (e) => {
@@ -155,6 +156,39 @@ const Register = () => {
               </select>
             </div>
           </div>
+          {userType === "administrator" ? (
+            ""
+          ) : (
+            <div className={style.inputContainer}>
+              <div>
+                <label className={style.label}>Membership:</label>
+              </div>
+              <div>
+                <select
+                  className={style.select}
+                  name="membership"
+                  value={userInfo.membership}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="" disabled>
+                    Select Membership
+                  </option>
+                  {userType === "administrator" ? (
+                    ""
+                  ) : (
+                    <>
+                      <option value="yearly">Yearly (for Rs1000)</option>
+                      <option value="half-yearly">
+                        Half-Yearly (for Rs600)
+                      </option>
+                      <option value="quarterly">Quarterly (for Rs500)</option>
+                    </>
+                  )}
+                </select>
+              </div>
+            </div>
+          )}
           <div className={style.btnContainer}>
             <button type="submit" className={style.loginBtn}>
               Register

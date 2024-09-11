@@ -84,20 +84,19 @@ function Sidebar() {
             <div>Listings</div>
           </button> */}
 
-          {(userType === "librarian" ||
-            userType === "user") && (
-              <button
-                className={`${styles.sidebarItem} ${
-                  activeTab === "listing" ? styles.active : ""
-                }`}
-                onClick={() => handleTabClick("listing", "/listing")}
-              >
-                <div className={styles.icons}>
-                  <ViewListOutlinedIcon />
-                </div>
-                <div>Listing</div>
-              </button>
-            )}
+          {(userType === "librarian" || userType === "user") && (
+            <button
+              className={`${styles.sidebarItem} ${
+                activeTab === "listing" ? styles.active : ""
+              }`}
+              onClick={() => handleTabClick("listing", "/listing")}
+            >
+              <div className={styles.icons}>
+                <ViewListOutlinedIcon />
+              </div>
+              <div>Listing</div>
+            </button>
+          )}
 
           {userType === "librarian" && (
             <button
@@ -126,6 +125,19 @@ function Sidebar() {
               <div>Settings</div>
             </button>
           )}
+          {userType === "user" && (
+            <button
+              className={`${styles.sidebarItem} ${
+                activeTab === "myAccount" ? styles.active : ""
+              }`}
+              onClick={() => handleTabClick("myAccount", "/my-account")}
+            >
+              <div className={styles.icons}>
+                <SettingsOutlinedIcon />
+              </div>
+              <div>My Account</div>
+            </button>
+          )}
         </div>
       </div>
 
@@ -135,11 +147,11 @@ function Sidebar() {
           <span>{name}</span>
         </div>
         <div className={styles.btnContainer}>
-          {userType === "administrator" || userType === "librarian" && (
-          <>
-            <button onClick={() => navigate("/register")}>Add Account</button>
-            <br />
-          </>
+          {(userType === "administrator" || userType === "librarian") && (
+            <>
+              <button onClick={() => navigate("/register")}>Add Account</button>
+              <br />
+            </>
           )}
           <button onClick={handleLogout}>
             <div className={styles.icons}>

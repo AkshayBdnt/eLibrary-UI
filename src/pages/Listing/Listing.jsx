@@ -7,7 +7,7 @@ function Listing() {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    // Fetch the books data from the API
+    
     const userDetailsString = localStorage.getItem("userDetails");
   
     if (userDetailsString) {
@@ -22,7 +22,7 @@ function Listing() {
   
       axios.get('https://library-api-9bac.onrender.com/books/viewbooks/', config)
         .then(response => {
-          setBooks(response.data);  // Use response.data as axios automatically parses the JSON response
+          setBooks(response.data);  
         })
         .catch(error => console.error("Error fetching data:", error));
     } else {
