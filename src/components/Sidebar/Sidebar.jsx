@@ -46,7 +46,7 @@ function Sidebar() {
   return (
     <div className={styles.sidebarContainer}>
       <div className={styles.top}>
-        <h2>Shelves</h2>
+        <h2 className={styles.header}>Shelves</h2>
         <div className={styles.sidebar}>
           <button
             className={`${styles.sidebarItem} ${
@@ -112,7 +112,7 @@ function Sidebar() {
             </button>
           )}
 
-          {userType === "administrator" && (
+          {/* {userType === "administrator" && (
             <button
               className={`${styles.sidebarItem} ${
                 activeTab === "setting" ? styles.active : ""
@@ -124,7 +124,7 @@ function Sidebar() {
               </div>
               <div>Settings</div>
             </button>
-          )}
+          )} */}
           {userType === "user" && (
             <button
               className={`${styles.sidebarItem} ${

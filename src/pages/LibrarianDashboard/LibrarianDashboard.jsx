@@ -3,6 +3,9 @@ import styles from "./LibrarianDashboard.module.scss";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Chart from "../../components/Chart/Chart";
 import axios from "axios";
+import AutoStoriesIcon from "@mui/icons-material/AutoStories";
+import PendingActionsIcon from "@mui/icons-material/PendingActions";
+import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 
 function LibrarianDashboard() {
   const [data, setData] = useState([]);
@@ -51,22 +54,45 @@ function LibrarianDashboard() {
           <p className={styles.error}>{error}</p>
         ) : (
           <>
-              <div  className={styles.cardContainer}>
-                <div className={styles.card}>
-                  <h2>No. Of Books Issued</h2>
-                  <p>{cardData.totalIssuedBooks}</p>
-                </div>
-                <div className={styles.card}>
-                  <h2>Total Amount</h2>
-                  <p>{cardData
-                  .totalAmount}</p>
-                </div>
-                <div className={styles.card}>
+            <div className={styles.cardContainer}>
+              {/* <div className={styles.card}>
+                <h2 className={styles.cardHeading}>No. Of Books Issued</h2>
+                <p>{cardData.totalIssuedBooks}</p>
+              </div>
+              <div className={styles.card}>
+                <h2 className={styles.cardHeading}>Total Amount</h2>
+                <p>${cardData.totalAmount}</p>
+              </div> */}
+              {/* <div className={styles.card}>
                   <h2>Visitors</h2>
+                </div> */}
+              <div className={styles.card}>
+                <div className={styles.cardDiv2}>
+                  <AutoStoriesIcon
+                    fontSize="large"
+                    className={styles.bookIcon}
+                  />
+                </div>
+                <div className={styles.cardDiv1}>
+                  <h2>No. Of Books Borrowed</h2>
+                  <h1>{cardData.totalIssuedBooks}</h1>
                 </div>
               </div>
+              <div className={styles.card}>
+                <div className={styles.cardDiv2}>
+                  <CurrencyRupeeIcon
+                    fontSize="large"
+                    className={styles.bookIcon}
+                  />
+                </div>
+                <div className={styles.cardDiv1}>
+                  <h2>Total Cost</h2>
+                  <h1>{cardData.totalAmount}</h1>
+                </div>
+              </div>
+            </div>
             <div>
-              <h2>Books Circulated</h2>
+              <h2 className={styles.booksCirculated}>Books Circulated</h2>
               <table className={styles.table}>
                 <thead>
                   <tr>

@@ -1,12 +1,13 @@
 .main {
-
-  margin-left: 0;
+  // margin-left: 0;
   overflow-x: hidden;
 }
 
 .header{
-  color: rgb(59, 56, 56);  
-  font-weight: 900;
+  color: #696cff;  
+  font-weight: 700;
+  font-size: 32px;
+  float: left;
 }
 
 .right {
@@ -63,16 +64,16 @@
 }
 
 .card {
-  width: 300px;
+  display: flex;
+  // flex-direction: column;
+  gap: 12px;
+  width: 40%;
   height: 150px;
   border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   padding: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -82,12 +83,70 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.card h2 {
+
+
+.cardDiv1{
+  width: 80%;
+  // border: 1px solid;
+}
+.cardDiv1 > h2 {
   margin: 0 0 10px 0;
-  font-size: 20px;
-  color: #333;
+  font-size: 18px;
+  font-weight: 700;
+  color: #6c757d;
+  text-align: left;
+  // text-align: center;
 }
 
+.cardDiv1 > h1 {
+  margin: 0 0 10px 16px;
+  font-size: 24px;
+  // color: #0d9435;
+  color: #696cff;
+  // text-align: center;
+}
+.cardDiv2{
+  width: 20%;
+  // border: 1px solid;
+}
+.bookIcon{
+  color: #696cff;
+  font-size: 48px;
+
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  
+}
+
+.cardHeading {
+  // margin: 0 0 10px 0;
+  font-size: 24px;
+  color: #696cff;
+  // color: #333;
+  // color: #646E78;
+  text-align: left !important;
+}
+
+.card > p {
+  margin: 0 0 10px 0;
+  font-size: 24px;
+  font-weight: 600;
+  // line-height: 4rem;
+  margin-top: 6px;
+  color: #544f92;
+  // color: #384551;
+  padding-left: 18px;
+}
+
+.booksCirculated{
+  color: #6c757d;
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: 48px;
+}
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -100,7 +159,7 @@
 }
 
 .table thead {
-  background-color: #4caf50;
+  background-color: #696cff;
   color: white;
 }
 
@@ -117,7 +176,7 @@
 }
 
 .table tbody tr:last-of-type {
-  border-bottom: 2px solid #4caf50;
+  border-bottom: 2px solid #696cff;
 }
 
 .table tbody td {

@@ -3,11 +3,15 @@ import styles from "./AdminDashboard.module.scss";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Chart from "../../components/Chart/Chart";
 import axios from "axios";
+import AutoStoriesIcon from "@mui/icons-material/AutoStories";
+import PendingActionsIcon from "@mui/icons-material/PendingActions";
+import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 
 function AdminDashboard() {
   const [data, setData] = useState([]);
   const [count, setCount] = useState("");
   const [incomeData, setIncomeData] = useState([]);
+  const [revenueData, setRevenueData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,10 +34,8 @@ function AdminDashboard() {
           );
 
           if (response.data) {
-            // console.log(response.data, "response");
             setData(response.data.librarians);
             setCount(response.data.totalCount);
-            // console.log(response.data.librarians, "data");
           }
         }
       } catch (error) {
@@ -63,9 +65,8 @@ function AdminDashboard() {
             config
           );
           if (response.data) {
-            console.log(response.data, "response");
-            console.log(response.data.monthlyIncome, "data");
             setIncomeData(response.data.monthlyIncome);
+            setRevenueData(response.data.year[2024]);
           }
         }
       } catch (error) {
@@ -79,7 +80,7 @@ function AdminDashboard() {
     const date = new Date(isoString);
     return date.toLocaleDateString("en-US", {
       year: "numeric",
-      month: "long", // Use 'short' or 'numeric' for different formats
+      month: "long", 
       day: "numeric",
     });
   };
@@ -105,20 +106,38 @@ function AdminDashboard() {
         </div> */}
 
         <div className={styles.cardContainer}>
-          <div className={styles.card}>
+          {/* <div className={styles.card}>
             <h2>No. Of Librarians</h2>
             <h1>{count}</h1>
-          </div>
-          <div className={styles.card}>
+          </div> */}
+          {/* <div className={styles.card}>
             <h2>No. Of Users</h2>
           </div>
           <div className={styles.card}>
             <h2>NO. Of Visitors</h2>
+          </div> */}
+          <div className={styles.card}>
+            <div className={styles.cardDiv2}>
+              <AutoStoriesIcon fontSize="large" className={styles.bookIcon} />
+            </div>
+            <div className={styles.cardDiv1}>
+              <h2>No. Of Librarians</h2>
+              <h1>{count}</h1>
+            </div>
+          </div>
+          <div className={styles.card}>
+            <div className={styles.cardDiv2}>
+              <CurrencyRupeeIcon fontSize="large" className={styles.bookIcon} />
+            </div>
+            <div className={styles.cardDiv1}>
+              <h2>Total Revenue</h2>
+              <h1>{revenueData}</h1>
+            </div>
           </div>
         </div>
 
         <div>
-          <h2>Librarian Data</h2>
+          <h2 className={styles.list}>Librarian Data</h2>
           {data && data.length > 0 ? (
             <table className={styles.table}>
               <thead>

@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styles from "./UserDashboard.module.scss";
 import axios from "axios";
+import AutoStoriesIcon from "@mui/icons-material/AutoStories";
+import PendingActionsIcon from "@mui/icons-material/PendingActions";
+import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 
 function UserDashboard() {
   const [bookData, setBookData] = useState([]);
@@ -55,21 +58,39 @@ function UserDashboard() {
 
         <div className={styles.cardContainer}>
           <div className={styles.card}>
-            <h2>No. Of Books Borrowed</h2>
-            <h1>{bookData.totalBooksBorrowed}</h1>
+            <div className={styles.cardDiv2}>
+              <AutoStoriesIcon fontSize="large" className={styles.bookIcon} />
+            </div>
+            <div className={styles.cardDiv1}>
+              <h2>No. Of Books Borrowed</h2>
+              <h1>{bookData.totalBooksBorrowed}</h1>
+            </div>
           </div>
           <div className={styles.card}>
-            <h2>Books Overdue</h2>
-            <h1>1</h1>
+            <div className={styles.cardDiv2}>
+              <PendingActionsIcon
+                fontSize="large"
+                className={styles.bookIcon}
+              />
+            </div>
+            <div className={styles.cardDiv1}>
+              <h2>Books Overdue</h2>
+              <h1>1</h1>
+            </div>
           </div>
           <div className={styles.card}>
-            <h2>Total Cost</h2>
-            <h1>{bookData.totalCost}</h1>
+            <div className={styles.cardDiv2}>
+              <CurrencyRupeeIcon fontSize="large" className={styles.bookIcon} />
+            </div>
+            <div className={styles.cardDiv1}>
+              <h2>Total Cost</h2>
+              <h1>{bookData.totalCost}</h1>
+            </div>
           </div>
         </div>
 
         <div>
-          <h2>List Of Borrowed Books</h2>
+          <h2 className={styles.list}>List Of Borrowed Books</h2>
 
           <table className={styles.table}>
             <thead>
