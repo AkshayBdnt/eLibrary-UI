@@ -42,7 +42,8 @@
 
 .formContainer {
   width: fit-content;
-  min-height: 70%;
+  height: fit-content;
+  // min-height: 70%;
   border: 1px solid #5dade2;
   padding: 0px 32px;
   display: flex;
@@ -99,4 +100,5 @@
   color: #fff;
   border-radius: 5px;
   margin: auto;
+  margin-bottom: 38px;
 }
