@@ -5,7 +5,7 @@ import { axisClasses } from '@mui/x-charts/ChartsAxis';
 const chartSetting = {
   yAxis: [
     {
-      label: 'Revenue (in $)',
+      label: 'Revenue (in ₹)',
     },
   ],
   width: 900,
@@ -17,7 +17,7 @@ const chartSetting = {
   },
 };
 
-const valueFormatter = (value) => `${value}$`;
+const valueFormatter = (value) => `₹${value}`;
 
 export default function Chart({ data }) {
   // Ensure that data exists and has items
