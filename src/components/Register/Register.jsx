@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const userDetailsString = localStorage.getItem("userDetails");
 
@@ -31,7 +32,9 @@ const Register = () => {
   };
 
   const handleRegister = async (e) => {
-    e.preventDefault(); // Prevents the default form submission behavior
+    
+    e.preventDefault(); 
+    setLoading(true);
 
     try {
       if (!userDetailsString) {
@@ -57,6 +60,7 @@ const Register = () => {
       );
 
       if (response.status === 201) {
+        setLoading(false);
         console.log("User registered successfully");
         toast.success("Registered Successfully!");
         if (userType === "librarian") {
@@ -69,6 +73,7 @@ const Register = () => {
         toast.error("Registration Failed!");
       }
     } catch (error) {
+      setLoading(false);
       toast.error("Registration Failed!");
       console.error(error);
     }
@@ -191,7 +196,7 @@ const Register = () => {
           )}
           <div className={style.btnContainer}>
             <button type="submit" className={style.loginBtn}>
-              Register
+            {loading ? "loading" : "Register" }
             </button>
           </div>
         </form>

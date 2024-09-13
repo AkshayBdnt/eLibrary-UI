@@ -52,6 +52,7 @@ const Login = () => {
         toast.error("Login failed!");
       }
     } catch (error) {
+      setLoading(false);
       if (error.response) {
         toast.error(error.response.data?.error || "Login failed!");
       } else if (error.request) {
@@ -99,7 +100,7 @@ const Login = () => {
             />
           </div>
           <div className={style.btnContainer}>
-            <button type="submit" className={style.loginBtn}>
+            <button type="submit" className={style.loginBtn} disabled={loading}>
               {loading ? "loading..." : "Login"}
             </button>
           </div>
